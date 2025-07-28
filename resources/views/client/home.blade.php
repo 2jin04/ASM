@@ -144,7 +144,7 @@ Trang chủ
                 <div class="new">New</div>
               </div>
               <div class="single-prodcut-img  product-overlay pos-rltv">
-                <a href="{{ route('detail', $product->id) }}"> <img alt="" src="/client/images/product/{{$hangmoi->image}}" class="primary-image"> <img alt="" src="/client/images/product/{{$hangmoi->image}}" class="secondary-image"> </a>
+                <a href="{{ route('detail', $hangmoi->id) }}"> <img alt="" src="/client/images/product/{{$hangmoi->image}}" class="primary-image"> <img alt="" src="/client/images/product/{{$hangmoi->image}}" class="secondary-image"> </a>
               </div>
               <div class="product-icon socile-icon-tooltip text-center">
                 <ul>
@@ -156,7 +156,7 @@ Trang chủ
               </div>
             </div>
             <div class="product-text">
-              <div class="prodcut-name"> <a href="{{ route('detail', $product->id) }}">{{$hangmoi->name}}</a> </div>
+              <div class="prodcut-name"> <a href="{{ route('detail', $hangmoi->id) }}">{{$hangmoi->name}}</a> </div>
               <div class="prodcut-ratting-price">
                 <div class="prodcut-price">
                   <div class="new-price"> {{ number_format($hangmoi->priceSale, 0, ',', '.') }}đ </div>

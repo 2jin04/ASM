@@ -47,7 +47,7 @@
                         </div>
                         <div class="frm-action">
                             <div id="dngooggle" class="text-center">
-                                <a href="http://localhost:8000/login/google">
+                                <a href="{{ route('auth.google') }}">
                                     <img width="150" src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png">
                                 </a>
                             </div>

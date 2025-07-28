@@ -16,13 +16,15 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('gender')->nullable();
             $table->string('image')->default('default.png');
             $table->boolean('role')->default(1);
             $table->string('google_id')->nullable()->unique();
+            $table->string('provider');
+            $table->string('provider_id');
             $table->timestamp('deleted_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

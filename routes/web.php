@@ -5,7 +5,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminCateController;
 use App\Http\Controllers\AdminProController;
-use App\Http\Controllers\GoogleLoginController;
+use App\Http\Controllers\Auth\SocialAuthController;
 
 use App\Http\Middleware\AdminMiddleware;
 
@@ -24,24 +24,11 @@ Route::post('/register', [UsersController::class, 'register_']);
 //Đăng xuất
 Route::get('/exit', [UsersController::class, 'exit']);
 
-//Đăng nhập bằng google
-Route::get('/login/google', [GoogleLoginController::class, 'redirectToGoogle'])->name('auth.google');
-Route::get('/login/google/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
+// Google OAuth
+Route::get('/auth/google', [SocialAuthController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback']);
 
-//Xác thực email
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
-    return redirect('/');
-})->middleware(['auth', 'signed'])->name('verification.verify');
 
-Route::get('/email/verify', function () {
-    return view('verify-email');
-})->middleware('auth')->name('verification.notice');
-
-Route::post('/email/verification-notification', function (Request $request) {
-    $request->user()->sendEmailVerificationNotification();
-    return back()->with('message', 'Thư kích hoạt đã gửi!');
-})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 Route::get('/profile', [UsersController::class, 'profile']);
 Route::group(['prefix' => 'account'], function() {
